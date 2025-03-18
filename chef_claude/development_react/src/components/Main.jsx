@@ -2,31 +2,42 @@ import React from "react"
 
 export default function Main(){
    
-    const [modifyIngredients, setIngredients]= React.useState([ "Chicken", "Oregano", "Tomatoes"]);
+    const [modifyIngredients, setIngredients]= React.useState([ ]);
 
-    function handleSubmit(event){
-        event.preventDefault()
-    const formData = new FormData(event.currentTarget);
-const newIngredient = formData.get("ingredient")
+//     function handleSubmit(event){
+//         event.preventDefault()
+//     const formData = new FormData(event.currentTarget);
+// const newIngredient = formData.get("ingredient")
 
-if(event.currentTarget.value === ""){
-    return null;
+// if(event.currentTarget.value === ""){
+//     return null;
+// }
+
+
+
+
+//  setIngredients(prevIngredients => [...prevIngredients, newIngredient]);
+
+
+//     }
+
+function handleSubmit(formData){
+    
+    const newIngredient = formData.get("ingredient");
+    setIngredients(prevIngredients => [...prevIngredients, newIngredient])
+  
+    console.log({
+       ingredient: newIngredient
+
+    })
 }
-
-
-
-
- setIngredients(prevIngredients => [...prevIngredients, newIngredient]);
-
-
-    }
 
     const ingredientListItems = modifyIngredients.map(ingredient => (
         <li>{ingredient}</li>
     ));
     return (
         <main>
-            <form className ="add-ingredient-form" onClick={handleSubmit}>
+            <form className ="add-ingredient-form" action={handleSubmit}>
                 <input 
                 type = "text"
                 placeholder = "e.g. oregano"

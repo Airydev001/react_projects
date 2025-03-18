@@ -82,7 +82,7 @@ h1{
 }
 .form_container{
  width: 400;
- height: 400px;
+ min-height: 500px;
  border-top-left-radius:15px ;
  border-bottom-right-radius: 15px;
  background-color: bisque;
@@ -122,4 +122,14 @@ h1{
   color:green;
   background-color:bisque;
   font-weight: 500;
+}
+
+fieldset {
+  border: 1px solid #262626;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  
+
 }
