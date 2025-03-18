@@ -1,17 +1,27 @@
+import React from "react"
+
 export default function Main(){
-    const ingredients = [
-        "Chicken", "Oregano", "Tomatoes"
-    ]
+   
+    const [modifyIngredients, setIngredients]= React.useState([ "Chicken", "Oregano", "Tomatoes"]);
 
     function handleSubmit(event){
         event.preventDefault()
     const formData = new FormData(event.currentTarget);
 const newIngredient = formData.get("ingredient")
-ingredients.push(newIngredient);
-console.log(ingredients);
+
+if(event.currentTarget.value === ""){
+    return null;
+}
+
+
+
+
+ setIngredients(prevIngredients => [...prevIngredients, newIngredient]);
+
+
     }
 
-    const ingredientListItems = ingredients.map(ingredient => (
+    const ingredientListItems = modifyIngredients.map(ingredient => (
         <li>{ingredient}</li>
     ));
     return (

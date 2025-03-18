@@ -11,7 +11,7 @@ export default function Fav(){
 
     function addFavoriteThings(){
         setMyFavoriteThings(
-           prevFavThings => [...prevFavThings,"Test"] 
+           prevFavThings => [...prevFavThings,allFavoriteThings[prevFavThings.length]] 
         )
     }
 
