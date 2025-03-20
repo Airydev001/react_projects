@@ -4,11 +4,7 @@ import React from "react"
 export default function Pad(props){
 
 
-const [on, setOn ]= React.useState(props.on)
 
-function toggle(){
-    setOn(prevOn => !prevOn);
-}
 
 
 
@@ -33,8 +29,8 @@ function toggle(){
 
             
         } 
-        onClick={  toggle}
+        onClick={()=>props.toggle(props.id)}
         
-        className = { on ? "on": undefined}></button>
+        className = { props.on ? "on": undefined}></button>
     )
 }
