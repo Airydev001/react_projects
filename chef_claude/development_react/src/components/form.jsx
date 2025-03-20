@@ -5,16 +5,17 @@ import React from "react";
 export default function Form(){
 
     function signUp(formData){
-        const email = formData.get("email");
-        const password = formData.get("password")
-        const employmentStatus = formData.get("employmentStatus")
-        const favColor = formData.get("favColor")
-        console.log({
-            email: email, password:password,
-            countryStatus: employmentStatus,
-            favColor: favColor
+        // const email = formData.get("email");
+        // const password = formData.get("password")
+        // const employmentStatus = formData.get("employmentStatus")
+        // const favColor = formData.get("favColor")
+        // console.log({
+        //     email: email, password:password,
+        //     countryStatus: employmentStatus,
+        //     favColor: favColor
 
-        })
+        // })
+        console.log(Object.fromEntries(formData));
 
     }
     return (
