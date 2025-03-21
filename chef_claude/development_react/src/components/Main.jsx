@@ -1,12 +1,14 @@
 import React from "react"
 import Recipe from "./Recipe"
+import IngredientList from "./ingredientList";
+import { getRecipeFromMistral } from "./ai";
 export default function Main(){
    
     const [modifyIngredients, setIngredients]= React.useState([
         "all the main spices", "pasta", "ground beef", "tomato paste"
      ]);
 
-    const [recipeShown, isRecipeShown]= React.useState(false);
+    const [recipeShown, isRecipeShown]= React.useState("");
 //     function handleSubmit(event){
 //         event.preventDefault()
 //     const formData = new FormData(event.currentTarget);
@@ -17,8 +19,10 @@ export default function Main(){
 // }
 
 
-function checkRecipeFeed(){
-    isRecipeShown(prevShown => !prevShown);
+async function getRecipe() {
+  //  isRecipeShown(prevShown => !prevShown);
+ const recipeMarkdown = await getRecipeFromMistral(modifyIngredients)
+isRecipeShown(recipeMarkdown);
 }
 
 //  setIngredients(prevIngredients => [...prevIngredients, newIngredient]);
@@ -52,19 +56,16 @@ function handleSubmit(formData){
                 <button> Add ingredient</button>
                 
             </form>
-         { !(modifyIngredients.length === 0) &&  <section>
-                <h2>Ingredients on hand:</h2>
-                <ul className="ingredients-list" aria-live="polite">{ingredientListItems}</ul>
-                { modifyIngredients.length > 3 &&<div className="get-recipe-container">
-                    <div>
-                        <h3>Ready for a recipe?</h3>
-                        <p>Generate a recipe from your list of ingredients.</p>
-                    </div>
-                    <button onClick={checkRecipeFeed}>Get a recipe</button>
-                </div>}
-            </section>}
+         { !(modifyIngredients.length === 0) &&  
+         <IngredientList ingredientListItems={ingredientListItems} 
+         getRecipe={getRecipe}
+         modifyIngredients={modifyIngredients}
+          />
+         
+         
+       }
 
-{recipeShown && <Recipe/>}
+{recipeShown && <Recipe recipe={recipeShown}/>}
 
         </main>
     )
